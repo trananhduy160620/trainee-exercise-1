@@ -1,0 +1,68 @@
+//
+//  ServiceManager.swift
+//  MovieTheater
+//
+//  Created by duytran on 10/6/21.
+//
+
+import UIKit
+class MovieServiceManager {
+    static let shared = MovieServiceManager()
+    
+    private init() {
+        
+    }
+    
+    public func fetchMovieByID(id: Int, completion: @escaping (Result<Movie, Error>) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/movie/\(id)?api_key=5ffcc41ffa430808bbb42b1c7070a6b1"
+        guard let url = URL(string: urlString) else { return  }
+        let session = URLSession.shared
+        session.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
+                DispatchQueue.main.async {
+                    guard let json = jsonData as? [String:Any] else { return }
+                    let id = json["id"] as! Int
+                    let title = json["title"] as! String
+                    let overview = json["overview"] as! String
+                    let releaseDate = json["release_date"] as! String
+                    let posterPath = json["poster_path"] as! String
+                    let rating = json["vote_average"] as! Double
+                    let movie = Movie(id: id,
+                                      title: title,
+                                      overview: overview,
+                                      releaseDate: releaseDate,
+                                      posterPath: posterPath,
+                                      rating: rating)
+                    completion(.success(movie))
+                }
+            }catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    public func fetchMovieByIDs(IDs: [Int], completion: @escaping (Result<[Movie], Error>) -> Void) {
+        var tempMovies = [Movie]()
+        let dispatchGroup = DispatchGroup()
+        for id in IDs {
+            dispatchGroup.enter()
+            fetchMovieByID(id: id) { (result) in
+                switch result {
+                case .success(let movie):
+                    tempMovies.append(movie)
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completion(.success(tempMovies))
+        }
+    }
+}
+
