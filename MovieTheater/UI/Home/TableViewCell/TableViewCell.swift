@@ -18,7 +18,13 @@ class TableViewCell: UITableViewCell {
         movieCollectionView.delegate = self
         let nib = UINib(nibName: "MovieViewCell", bundle: nil)
         movieCollectionView.register(nib, forCellWithReuseIdentifier: "MovieViewCell")
-    }    
+    }
+    func reloadDataInsideCollectionView() {
+        movieCollectionView.reloadData()
+    }
+    func setTagForCollectionView(_ tag:Int) {
+        movieCollectionView.tag = tag
+    }
 }
 
 // MARK:- UICollectionViewDataSource

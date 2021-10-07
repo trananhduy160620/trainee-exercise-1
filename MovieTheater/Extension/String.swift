@@ -15,7 +15,7 @@ extension String {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM dd,yyyy"
 
-        let date: Date? = dateFormatterGet.date(from: "2021-08-11")
+        let date: Date? = dateFormatterGet.date(from: self)
         return dateFormatterPrint.string(from: date!)
     }
 }

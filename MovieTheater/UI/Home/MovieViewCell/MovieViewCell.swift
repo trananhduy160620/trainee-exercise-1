@@ -38,6 +38,7 @@ class MovieViewCell: UICollectionViewCell {
         movieImageView.downloaded(from: url)
         movieNameLabel.text = movie.title
         movieDateLabel.text = movie.releaseDate.toDate()
-        ratingLabel.text = "\(round(movie.rating * 10))"
+        ratingLabel.text = Double(movie.rating * 10).clean + "%"
+        
     }
 }

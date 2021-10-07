@@ -19,7 +19,7 @@ class HeaderTableView: UITableViewHeaderFooterView {
         stack.backgroundColor = .white
         return stack
     }()
-    
+    public weak var headerDelegate:HeaderTableViewDelegate?
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupSubViews()
@@ -61,7 +61,7 @@ class HeaderTableView: UITableViewHeaderFooterView {
     
     // action for show all button click
     @objc func showAllButtonClick() {
-        print(123)
+        headerDelegate?.handleShowAllButtonClick()
     }
     
     required init?(coder: NSCoder) {
