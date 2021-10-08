@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         watchListVC.tabBarItem = UITabBarItem(title: "WatchList", image: UIImage(systemName: "bookmark"), selectedImage: UIImage(systemName: "bookmark.fill"))
         
         tabBarController.viewControllers = [homeNav, favoriteVC, watchListVC]
-        window?.rootViewController = tabBarController
+        window?.rootViewController = tabBarController  //MovieDetailViewController(nibName: "MovieDetailViewController", bundle: nil)
         window?.makeKeyAndVisible()
     }
 

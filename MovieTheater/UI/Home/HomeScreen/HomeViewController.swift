@@ -158,7 +158,9 @@ extension HomeViewController : TableViewCellDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("cell cell cell")
+        let movieDetailVC = MovieDetailViewController(nibName: "MovieDetailViewController", bundle: nil)
+        movieDetailVC.movie = collectionView.tag == 0 ? popularMovies[indexPath.item] : trendingMovies[indexPath.item]
+        self.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 }
 

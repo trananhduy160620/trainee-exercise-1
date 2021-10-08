@@ -18,12 +18,13 @@ class MovieViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // custom cell
         backgroundColor = .white
         layer.cornerRadius = 5
         
         // Custom container view
+        containerView.layer.borderColor = UIColor.systemGreen.cgColor
+        containerView.layer.borderWidth = 1
         containerView.layer.cornerRadius = containerView.frame.height / 2
         containerView.layer.masksToBounds = true
         
