@@ -25,20 +25,7 @@ class MovieServiceManager {
                 let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
                 DispatchQueue.main.async {
                     guard let json = jsonData as? [String:Any] else { return }
-                    let id = json["id"] as! Int
-                    let title = json["title"] as! String
-                    let tagLine = json["tagline"] as! String
-                    let overview = json["overview"] as! String
-                    let releaseDate = json["release_date"] as! String
-                    let posterPath = json["poster_path"] as! String
-                    let rating = json["vote_average"] as! Double
-                    let voteCount = json["vote_count"] as! Int
-                    let movie = Movie(id: id,
-                                      title: title, tagLine: tagLine,
-                                      overview: overview,
-                                      releaseDate: releaseDate,
-                                      posterPath: posterPath,
-                                      rating: rating, voteCount: voteCount)
+                    let movie = Movie(json: json)
                     completion(.success(movie))
                 }
             }catch {
