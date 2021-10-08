@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListTrendingMovieViewController" customModule="MovieTheater" customModuleProvider="target">
+            <connections>
+                <outlet property="trendingMovieTableView" destination="2qA-sR-OU1" id="Nt8-EK-uaX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="195" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-sR-OU1">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2qA-sR-OU1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="I4d-4B-fiw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2qA-sR-OU1" secondAttribute="bottom" id="bcm-2l-pNy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2qA-sR-OU1" secondAttribute="trailing" id="qWo-3k-JpR"/>
+                <constraint firstItem="2qA-sR-OU1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uSO-A7-JMC"/>
+            </constraints>
+            <point key="canvasLocation" x="141" y="90"/>
+        </view>
+    </objects>
+</document>
