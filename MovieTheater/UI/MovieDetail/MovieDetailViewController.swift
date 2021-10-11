@@ -9,14 +9,15 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
-    @IBOutlet weak var bigMovieImageView: UIImageView!
-    @IBOutlet weak var thumbnailMovieImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var largeMovieImageView: UIImageView!
+    @IBOutlet weak var smallMovieImageView: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var userScoreStackView: UIStackView!
     @IBOutlet weak var containerRatingView: UIView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var playTrailerButton: UIButton!
-    @IBOutlet weak var categoryStackView: UIStackView!
     @IBOutlet weak var categoryMovieLabel: UILabel!
     @IBOutlet weak var runtimeMovieLabel: UILabel!
     @IBOutlet weak var genresMovieLabel: UILabel!
@@ -29,29 +30,21 @@ class MovieDetailViewController: UIViewController {
         setupUI()
         setupDisplay()
     }
+    
     // MARK:- Set up UI
     private func setupUI() {
         setupContainerRatingView()
         setupPlayTrailerButton()
         setupCategoryMovieLabel()
+        setupFavoriteButton()
+        setupBookmarkButton()
     }
     
     private func setupContainerRatingView() {
-        // set up UI of containerRatingView
         containerRatingView.layer.cornerRadius = 32
         containerRatingView.layer.borderWidth = 1
         containerRatingView.layer.borderColor = UIColor.systemGreen.cgColor
         containerRatingView.layer.masksToBounds = true
-    }
-    
-    private func setupSeparatorUserScoreStackView() {
-//        if userScoreStackView.arrangedSubviews.count > 0 {
-//            let separator = UIView()
-//            separator.widthAnchor.constraint(equalToConstant: 1).isActive = true
-//            separator.backgroundColor = .black
-//            userScoreStackView.addArrangedSubview(separator)
-//            separator.heightAnchor.constraint(equalTo: userScoreStackView.heightAnchor, multiplier: 0.6).isActive = true
-//        }
     }
     
     private func setupPlayTrailerButton() {
@@ -66,12 +59,20 @@ class MovieDetailViewController: UIViewController {
         categoryMovieLabel.layer.masksToBounds = true
     }
     
+    private func setupFavoriteButton() {
+        favoriteButton.setImage(UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+    }
+    
+    private func setupBookmarkButton() {
+        bookmarkButton.setImage(UIImage(systemName: "bookmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+    }
+    
     private func setupDisplay() {
         if let m = movie {
             let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + m.posterPath
             guard let url = URL(string: urlString) else { return }
-            bigMovieImageView.downloaded(from: url)
-            thumbnailMovieImageView.downloaded(from: url)
+            largeMovieImageView.downloaded(from: url)
+            smallMovieImageView.downloaded(from: url)
             movieNameLabel.text = m.title
             ratingLabel.text = Double(m.rating * 10).clean + "%"
             runtimeMovieLabel.text = m.runtime.toTime()
@@ -80,7 +81,7 @@ class MovieDetailViewController: UIViewController {
                 temString = temString + genre.name + ", "
             }
             genresMovieLabel.text = temString
-            tagLineMovieLabel.text = m.tagLine
+            tagLineMovieLabel.text = m.tagLine != "" ? m.tagLine : "Tagline will be update"
             overviewMovieTextView.text = m.overview
         }
     }
