@@ -22,6 +22,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var runtimeMovieLabel: UILabel!
     @IBOutlet weak var genresMovieLabel: UILabel!
     @IBOutlet weak var tagLineMovieLabel: UILabel!
+    @IBOutlet weak var containerOverviewTextview: UIView!
+    @IBOutlet weak var heightConstraintContainerView: NSLayoutConstraint!
     @IBOutlet weak var overviewMovieTextView: UITextView!
     
     var movie:Movie?
@@ -29,10 +31,12 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupDisplay()
+        self.adjustTextViewHeight()
     }
     
     // MARK:- Set up UI
     private func setupUI() {
+        overviewMovieTextView.delegate = self
         setupContainerRatingView()
         setupPlayTrailerButton()
         setupCategoryMovieLabel()
@@ -85,9 +89,21 @@ class MovieDetailViewController: UIViewController {
             overviewMovieTextView.text = m.overview
         }
     }
+    private func adjustTextViewHeight() {
+        let fixedWidth = overviewMovieTextView.frame.size.width
+        let newSize = overviewMovieTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        self.heightConstraintContainerView.constant = newSize.height
+        self.view.layoutIfNeeded()
+    }
     @IBAction func favoriteButtonClick(_ sender: UIButton) {
     }
     
     @IBAction func watchListButtonClick(_ sender: UIButton) {
+    }
+}
+
+extension MovieDetailViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.adjustTextViewHeight()
     }
 }
