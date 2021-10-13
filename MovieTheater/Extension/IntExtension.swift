@@ -12,8 +12,7 @@ extension Int {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
         formatter.unitsStyle = .abbreviated
-
-        let formattedString = formatter.string(from: TimeInterval(self))!
+        let formattedString = formatter.string(from: TimeInterval(self * 60))!
         return formattedString
     }
 }

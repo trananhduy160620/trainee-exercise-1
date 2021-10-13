@@ -11,9 +11,11 @@
             <connections>
                 <outlet property="bookmarkButton" destination="38C-0Z-FnF" id="s3F-Ui-Xyi"/>
                 <outlet property="categoryMovieLabel" destination="AOo-Qx-IgZ" id="ORA-3d-gxg"/>
+                <outlet property="containerOverviewTextview" destination="ho3-iY-Bgs" id="r9y-hn-Oxb"/>
                 <outlet property="containerRatingView" destination="STO-2i-fYz" id="VFg-dA-0aN"/>
                 <outlet property="favoriteButton" destination="LL7-Sz-UfM" id="7L7-nP-Bi0"/>
                 <outlet property="genresMovieLabel" destination="a5D-7g-caB" id="Em0-u9-GMJ"/>
+                <outlet property="heightConstraintContainerView" destination="dbZ-K7-P3s" id="QRP-PW-4v2"/>
                 <outlet property="largeMovieImageView" destination="q6x-nX-De6" id="amK-QH-es6"/>
                 <outlet property="movieNameLabel" destination="jCg-On-pMS" id="s8d-Fk-5Vj"/>
                 <outlet property="overviewMovieTextView" destination="iJJ-yd-hYG" id="Y7h-lh-mQv"/>
@@ -28,14 +30,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="SuperView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suu-H5-yxN">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="KhS-Kw-EGD">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="864"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNs-Ut-iNQ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
@@ -215,7 +217,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6G-1H-utQ">
                                     <rect key="frame" x="0.0" y="584" width="414" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Life's too short to be a background character." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dz-eS-uha">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Life's too short to be a background character." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dz-eS-uha">
                                             <rect key="frame" x="10" y="0.0" width="394" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -250,10 +252,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ho3-iY-Bgs">
-                                    <rect key="frame" x="0.0" y="664" width="414" height="200"/>
+                                    <rect key="frame" x="0.0" y="664" width="414" height="150"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iJJ-yd-hYG">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" indicatorStyle="white" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJJ-yd-hYG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
                                             <color key="backgroundColor" red="0.096660204230000005" green="0.069273658099999996" blue="0.14230677489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <string key="text">A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.</string>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -265,8 +267,7 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="iJJ-yd-hYG" secondAttribute="trailing" id="A06-lI-ibP"/>
                                         <constraint firstItem="iJJ-yd-hYG" firstAttribute="top" secondItem="ho3-iY-Bgs" secondAttribute="top" id="Gr1-CK-J03"/>
-                                        <constraint firstAttribute="height" constant="200" id="dbZ-K7-P3s"/>
-                                        <constraint firstAttribute="bottom" secondItem="iJJ-yd-hYG" secondAttribute="bottom" id="mNO-zX-kIe"/>
+                                        <constraint firstAttribute="height" constant="150" id="dbZ-K7-P3s"/>
                                         <constraint firstItem="iJJ-yd-hYG" firstAttribute="leading" secondItem="ho3-iY-Bgs" secondAttribute="leading" id="ua9-Dt-WKb"/>
                                     </constraints>
                                 </view>
