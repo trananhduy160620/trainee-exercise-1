@@ -27,6 +27,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var overviewMovieTextView: UITextView!
     
     var movie:Movie?
+    private var isFavoriteButtonClicked = false
+    private var isBoorkmarkButtonClicked = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -64,11 +66,21 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupFavoriteButton() {
-        favoriteButton.setImage(UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        guard let m = movie else { return }
+        isFavoriteButtonClicked = RealmManager.shared.fetchMovieBy(primaryKey: m.id).isFavor
+        if isFavoriteButtonClicked {
+            favoriteButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        }
     }
     
     private func setupBookmarkButton() {
-        bookmarkButton.setImage(UIImage(systemName: "bookmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        if isBoorkmarkButtonClicked {
+            bookmarkButton.setImage(UIImage(systemName: "bookmark.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal), for: .normal)
+        } else {
+            bookmarkButton.setImage(UIImage(systemName: "bookmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        }
     }
     
     private func setupDisplay() {
@@ -89,16 +101,32 @@ class MovieDetailViewController: UIViewController {
             overviewMovieTextView.text = m.overview
         }
     }
+    
     private func adjustTextViewHeight() {
         let fixedWidth = overviewMovieTextView.frame.size.width
         let newSize = overviewMovieTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         self.heightConstraintContainerView.constant = newSize.height
         self.view.layoutIfNeeded()
     }
+    
     @IBAction func favoriteButtonClick(_ sender: UIButton) {
+        isFavoriteButtonClicked = !isFavoriteButtonClicked
+        if isFavoriteButtonClicked {
+            favoriteButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .normal)
+        } else {
+            favoriteButton.setImage(UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        }
+        guard let m = movie else { return }
+        RealmManager.shared.update(movie: m, by: isFavoriteButtonClicked)
     }
     
     @IBAction func watchListButtonClick(_ sender: UIButton) {
+        isBoorkmarkButtonClicked = !isBoorkmarkButtonClicked
+        if isBoorkmarkButtonClicked {
+            bookmarkButton.setImage(UIImage(systemName: "bookmark.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal), for: .normal)
+        } else {
+            bookmarkButton.setImage(UIImage(systemName: "bookmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        }
     }
 }
 
