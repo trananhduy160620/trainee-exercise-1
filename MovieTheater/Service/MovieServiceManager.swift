@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+
 class MovieServiceManager {
     static let shared = MovieServiceManager()
     
@@ -26,6 +28,7 @@ class MovieServiceManager {
                 DispatchQueue.main.async {
                     guard let json = jsonData as? [String:Any] else { return }
                     let movie = Movie(json: json)
+                    RealmManager.shared.addMovie(movie: movie)
                     completion(.success(movie))
                 }
             }catch {

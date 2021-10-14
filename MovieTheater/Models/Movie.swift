@@ -6,18 +6,23 @@
 //
 
 import Foundation
-struct Movie {
-    var id: Int
-    var title:String
-    var tagLine:String
-    var overview:String
-    var runtime:Int
-    var releaseDate:String
-    var posterPath:String
-    var rating:Double
-    var voteCount: Int
-    var genres:[Genres] = []
-    init(json: [String:Any] ) {
+import RealmSwift
+class Movie:Object {
+    @Persisted(primaryKey: true) var id: Int = 0
+    @Persisted var title:String = ""
+    @Persisted var tagLine:String = ""
+    @Persisted var overview:String = ""
+    @Persisted var runtime:Int = 0
+    @Persisted var releaseDate:String = ""
+    @Persisted var posterPath:String = ""
+    @Persisted var rating:Double = 0
+    @Persisted var voteCount: Int = 0
+    @Persisted var genres:List<Genres>
+    @Persisted var isFavor:Bool = false
+    @Persisted var inWatchList:Bool = false
+    
+    convenience init(json: [String:Any] ) {
+        self.init()
         self.id = json["id"] as! Int
         self.title = json["title"] as! String
         self.tagLine = json["tagline"] as! String
@@ -38,9 +43,10 @@ struct Movie {
             }
         }
     }
-    init(id: Int, title:String,
-         tagLine:String, overview:String, runtime:Int, releaseDate:String,
-         posterPath:String, rating:Double, voteCount:Int, genres:[Genres]) {
+    
+    convenience init(id: Int, title:String, tagLine:String, overview:String, runtime:Int,
+                     releaseDate:String, posterPath:String, rating:Double, voteCount:Int, genres:List<Genres>, isFavor:Bool = false, inWatchList:Bool = false) {
+        self.init()
         self.id = id
         self.title = title
         self.tagLine = tagLine
@@ -51,9 +57,8 @@ struct Movie {
         self.rating = rating
         self.voteCount = voteCount
         self.genres = genres
+        self.isFavor = isFavor
+        self.inWatchList = inWatchList
     }
 }
-struct Genres {
-    var id:Int
-    var name:String
-}
+

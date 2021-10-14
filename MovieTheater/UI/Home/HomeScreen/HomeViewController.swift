@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
         setupMovieTableView()
         createPopularMoviesData()
         createTrendingMoviesData()
+        print("Database path: ",RealmManager.shared.getDatabasePath())
     }
     
     // MARK:- setupLeftBarButton

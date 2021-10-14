@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="428" id="KGk-i7-Jjw" customClass="FavoriteCell" customModule="MovieTheater" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_free-guy" translatesAutoresizingMaskIntoConstraints="NO" id="wDD-Ya-u0O">
+                        <rect key="frame" x="5" y="5" width="150.5" height="226"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="wDD-Ya-u0O" secondAttribute="height" multiplier="220:330" id="C4f-6R-SuR"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-Q2-OLz">
+                        <rect key="frame" x="160.5" y="5" width="248.5" height="226"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vga-GV-6rT">
+                                <rect key="frame" x="0.0" y="0.0" width="248.5" height="75.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Guy" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mA7-dr-dNZ">
+                                        <rect key="frame" x="0.0" y="5" width="248.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="mA7-dr-dNZ" firstAttribute="leading" secondItem="vga-GV-6rT" secondAttribute="leading" id="1Tr-Uk-rx3"/>
+                                    <constraint firstItem="mA7-dr-dNZ" firstAttribute="height" relation="greaterThanOrEqual" secondItem="vga-GV-6rT" secondAttribute="height" multiplier="0.3" id="7j5-sG-KQH"/>
+                                    <constraint firstAttribute="trailing" secondItem="mA7-dr-dNZ" secondAttribute="trailing" id="OwV-c3-lMq"/>
+                                    <constraint firstItem="mA7-dr-dNZ" firstAttribute="top" secondItem="vga-GV-6rT" secondAttribute="top" constant="5" id="c4h-Lu-z2d"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 11, 2021" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg8-eh-dwh">
+                                <rect key="frame" x="0.0" y="75.5" width="248.5" height="75"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999 pts" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzb-aa-FcF">
+                                <rect key="frame" x="0.0" y="150.5" width="248.5" height="75.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="wDD-Ya-u0O" secondAttribute="bottom" constant="5" id="6Wa-bg-PVe"/>
+                    <constraint firstItem="wDD-Ya-u0O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="9Pt-XH-11j"/>
+                    <constraint firstAttribute="bottom" secondItem="EIo-Q2-OLz" secondAttribute="bottom" constant="5" id="EqB-1Z-Mzj"/>
+                    <constraint firstItem="wDD-Ya-u0O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Msq-7X-s5L"/>
+                    <constraint firstAttribute="trailing" secondItem="EIo-Q2-OLz" secondAttribute="trailing" constant="5" id="hJy-sJ-vu9"/>
+                    <constraint firstItem="EIo-Q2-OLz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="q4u-DQ-8oh"/>
+                    <constraint firstItem="EIo-Q2-OLz" firstAttribute="leading" secondItem="wDD-Ya-u0O" secondAttribute="trailing" constant="5" id="xMB-f4-JlR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="movieImageView" destination="wDD-Ya-u0O" id="ojp-2u-G0V"/>
+                <outlet property="movieNameLabel" destination="mA7-dr-dNZ" id="dS2-Vk-qod"/>
+                <outlet property="releaseDateMovieLabel" destination="Lg8-eh-dwh" id="TrP-ky-4yE"/>
+                <outlet property="voteCountLabel" destination="lzb-aa-FcF" id="wca-ai-Hum"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="78"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_free-guy" width="220" height="330"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
