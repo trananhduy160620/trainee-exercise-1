@@ -51,6 +51,20 @@ class RealmManager {
         }
     }
     
+    func update(movie: Movie, in watchList:Bool) {
+        let isMovieExist = checkMovieExist(id: movie.id)
+        if isMovieExist { // check movie exist in DB
+            do {
+                try database.write {
+                    movie.inWatchList = watchList
+                    database.add(movie, update: .modified)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func deleteMovie(movie: Movie) {
         let isMovieExist = checkMovieExist(id: movie.id)
         if isMovieExist {

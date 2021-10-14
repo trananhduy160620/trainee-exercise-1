@@ -76,6 +76,8 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupBookmarkButton() {
+        guard let m = movie else { return }
+        isBoorkmarkButtonClicked = RealmManager.shared.fetchMovieBy(primaryKey: m.id).inWatchList
         if isBoorkmarkButtonClicked {
             bookmarkButton.setImage(UIImage(systemName: "bookmark.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal), for: .normal)
         } else {
@@ -127,6 +129,8 @@ class MovieDetailViewController: UIViewController {
         } else {
             bookmarkButton.setImage(UIImage(systemName: "bookmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         }
+        guard let m = movie else { return }
+        RealmManager.shared.update(movie: m, in: isBoorkmarkButtonClicked)
     }
 }
 
