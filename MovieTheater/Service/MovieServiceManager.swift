@@ -27,7 +27,7 @@ class MovieServiceManager {
                 let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let json = jsonData as? [String:Any] else { return }
                 let movie = Movie(json: json)
-                //RealmManager.shared.addMovie(movie: movie)
+                RealmManager.shared.addMovie(movie: movie) // add movie into realm DB after request data from api
                 completion(.success(movie))
                 
             }catch {
