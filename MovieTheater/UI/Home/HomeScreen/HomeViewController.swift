@@ -67,6 +67,9 @@ class HomeViewController: UIViewController {
             case .success(let movies):
                 DispatchQueue.main.async {
                     self.popularMovies = movies
+                    movies.forEach { (movieItem) in
+                        RealmManager.shared.addMovie(movie: movieItem) // add movie into realm DB after request data from api
+                    }
                     self.movieTableView.reloadData()
                 }
             case .failure(let error):
@@ -81,6 +84,9 @@ class HomeViewController: UIViewController {
             case .success(let movies):
                 DispatchQueue.main.async {
                     self.trendingMovies = movies
+                    movies.forEach { (movieItem) in
+                        RealmManager.shared.addMovie(movie: movieItem) // add movie into realm DB after request data from api
+                    }
                     self.movieTableView.reloadData()
                 }
             case .failure(let error):
