@@ -62,11 +62,13 @@ class HomeViewController: UIViewController {
     
     // MARK: - Initialized Movie Data
     private func createPopularMoviesData() {
-        MovieServiceManager.shared.fetchMovieByIDs(IDs: idPopularMovieArray) { (result) in
+        MovieServiceManager.shared.fetchMovieByIDs(moviesID: idPopularMovieArray) { (result) in
             switch result {
             case .success(let movies):
-                self.popularMovies = movies
-                self.movieTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.popularMovies = movies
+                    self.movieTableView.reloadData()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -74,11 +76,13 @@ class HomeViewController: UIViewController {
     }
     
     private func createTrendingMoviesData() {
-        MovieServiceManager.shared.fetchMovieByIDs(IDs: idTrendingMovieArray) { (result) in
+        MovieServiceManager.shared.fetchMovieByIDs(moviesID: idTrendingMovieArray) { (result) in
             switch result {
             case .success(let movies):
-                self.trendingMovies = movies
-                self.movieTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.trendingMovies = movies
+                    self.movieTableView.reloadData()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

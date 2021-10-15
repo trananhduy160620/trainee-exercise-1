@@ -25,22 +25,21 @@ class MovieServiceManager {
             }
             do {
                 let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-                DispatchQueue.main.async {
-                    guard let json = jsonData as? [String:Any] else { return }
-                    let movie = Movie(json: json)
-                    RealmManager.shared.addMovie(movie: movie)
-                    completion(.success(movie))
-                }
+                guard let json = jsonData as? [String:Any] else { return }
+                let movie = Movie(json: json)
+                //RealmManager.shared.addMovie(movie: movie)
+                completion(.success(movie))
+                
             }catch {
                 completion(.failure(error))
             }
         }.resume()
     }
     
-    public func fetchMovieByIDs(IDs: [Int], completion: @escaping (Result<[Movie], Error>) -> Void) {
+    public func fetchMovieByIDs(moviesID: [Int], completion: @escaping (Result<[Movie], Error>) -> Void) {
         var tempMovies = [Movie]()
         let dispatchGroup = DispatchGroup()
-        for id in IDs {
+        for id in moviesID {
             dispatchGroup.enter()
             fetchMovieByID(id: id) { (result) in
                 switch result {

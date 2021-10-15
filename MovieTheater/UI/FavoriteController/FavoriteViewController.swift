@@ -14,6 +14,8 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFavoriteMovieTableView()
+        // post, get, put, delete, patch ?
+        // 
     }
     
     override func viewDidAppear(_ animated: Bool) {

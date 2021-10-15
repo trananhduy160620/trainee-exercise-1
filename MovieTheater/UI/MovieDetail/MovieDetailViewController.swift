@@ -118,8 +118,8 @@ class MovieDetailViewController: UIViewController {
         } else {
             favoriteButton.setImage(UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         }
-        guard let m = movie else { return }
-        RealmManager.shared.update(movie: m, by: isFavoriteButtonClicked)
+        guard let movie = movie else { return }
+        RealmManager.shared.update(movie: movie, by: isFavoriteButtonClicked, in: nil)
     }
     
     @IBAction func watchListButtonClick(_ sender: UIButton) {
@@ -129,8 +129,8 @@ class MovieDetailViewController: UIViewController {
         } else {
             bookmarkButton.setImage(UIImage(systemName: "bookmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         }
-        guard let m = movie else { return }
-        RealmManager.shared.update(movie: m, in: isBoorkmarkButtonClicked)
+        guard let movie = movie else { return }
+        RealmManager.shared.update(movie: movie, by: nil, in: isBoorkmarkButtonClicked)
     }
 }
 
