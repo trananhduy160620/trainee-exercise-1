@@ -19,5 +19,12 @@ extension UIImageView {
             }
         }
     }
-   
+    
+    func createBlur() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.frame = self.bounds
+        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(visualEffectView)
+    }
 }

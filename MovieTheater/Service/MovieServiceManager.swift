@@ -24,9 +24,7 @@ class MovieServiceManager {
                 return
             }
             do {
-                let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-                guard let json = jsonData as? [String:Any] else { return }
-                let movie = Movie(json: json)
+                let movie = try JSONDecoder().decode(Movie.self, from: data)
                 completion(.success(movie))
                 
             }catch {

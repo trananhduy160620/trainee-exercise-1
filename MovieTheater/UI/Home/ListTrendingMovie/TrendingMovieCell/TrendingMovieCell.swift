@@ -20,11 +20,14 @@ class TrendingMovieCell: UITableViewCell {
         movieImageView.layer.masksToBounds = true
     }
     public func setupDisplay(movie: Movie) {
-        let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + movie.posterPath
+        guard let movieImagePath = movie.posterPath else { return }
+        guard let movieReleaseDate = movie.releaseDate else { return }
+        guard let movieVoteCount = movie.voteCount else { return  }
+        let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + movieImagePath
         guard let url = URL(string: urlString) else { return }
         movieImageView.downloaded(from: url)
         movieNameLabel.text = movie.title
-        releaseDateMovieLabel.text = movie.releaseDate.toDate()
-        voteCountLabel.text = "\(movie.voteCount) pts"
+        releaseDateMovieLabel.text = movieReleaseDate.toDate()
+        voteCountLabel.text = "\(movieVoteCount) pts"
     }
 }

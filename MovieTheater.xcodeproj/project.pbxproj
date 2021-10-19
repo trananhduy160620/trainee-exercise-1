@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1EAE28271EBB61000EE094 /* MovieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1EAE27271EBB61000EE094 /* MovieItem.swift */; };
+		3A1EAE2B271EBBA3000EE094 /* ProductionCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1EAE2A271EBBA3000EE094 /* ProductionCompany.swift */; };
+		3A1EAE2F271EBBE5000EE094 /* ProductionCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1EAE2E271EBBE5000EE094 /* ProductionCountry.swift */; };
+		3A1EAE32271EBC16000EE094 /* SpokenLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1EAE31271EBC16000EE094 /* SpokenLanguage.swift */; };
 		3A4584EF27103F74004A4653 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4584EE27103F74004A4653 /* IntExtension.swift */; };
 		3A7499992717DE6700105106 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7499982717DE6700105106 /* RealmManager.swift */; };
 		3A74999D2717DE9C00105106 /* ResultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74999C2717DE9C00105106 /* ResultsExtension.swift */; };
@@ -48,6 +52,10 @@
 
 /* Begin PBXFileReference section */
 		1C8427CA6DAA30C4783699F3 /* Pods-MovieTheater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieTheater.release.xcconfig"; path = "Target Support Files/Pods-MovieTheater/Pods-MovieTheater.release.xcconfig"; sourceTree = "<group>"; };
+		3A1EAE27271EBB61000EE094 /* MovieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItem.swift; sourceTree = "<group>"; };
+		3A1EAE2A271EBBA3000EE094 /* ProductionCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCompany.swift; sourceTree = "<group>"; };
+		3A1EAE2E271EBBE5000EE094 /* ProductionCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionCountry.swift; sourceTree = "<group>"; };
+		3A1EAE31271EBC16000EE094 /* SpokenLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpokenLanguage.swift; sourceTree = "<group>"; };
 		3A4584EE27103F74004A4653 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		3A7499982717DE6700105106 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		3A74999C2717DE9C00105106 /* ResultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsExtension.swift; sourceTree = "<group>"; };
@@ -198,6 +206,10 @@
 			children = (
 				3AB8BDEF270DA62C00A1F8A0 /* Movie.swift */,
 				3A74999F2717DEFB00105106 /* Genres.swift */,
+				3A1EAE27271EBB61000EE094 /* MovieItem.swift */,
+				3A1EAE2A271EBBA3000EE094 /* ProductionCompany.swift */,
+				3A1EAE2E271EBBE5000EE094 /* ProductionCountry.swift */,
+				3A1EAE31271EBC16000EE094 /* SpokenLanguage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -463,10 +475,13 @@
 				3AB8BDF4270DAA2E00A1F8A0 /* TableViewCellDelegate.swift in Sources */,
 				3AB8BDD9270D4CA800A1F8A0 /* TableViewCell.swift in Sources */,
 				3A74999D2717DE9C00105106 /* ResultsExtension.swift in Sources */,
+				3A1EAE2B271EBBA3000EE094 /* ProductionCompany.swift in Sources */,
 				3AE757F4270DB4E00069AFCB /* StringExtension.swift in Sources */,
 				3AB8BDAB270BFF8300A1F8A0 /* WatchListViewController.swift in Sources */,
 				3AB8BDA1270BFF1800A1F8A0 /* HomeViewController.swift in Sources */,
+				3A1EAE28271EBB61000EE094 /* MovieItem.swift in Sources */,
 				3AB8BDDF270D594300A1F8A0 /* HeaderTableView.swift in Sources */,
+				3A1EAE32271EBC16000EE094 /* SpokenLanguage.swift in Sources */,
 				3AE75800270ECC090069AFCB /* HeaderTableViewDelegate.swift in Sources */,
 				3AE757F7270DEDFB0069AFCB /* DoubleExtension.swift in Sources */,
 				3AB8BDF8270DAFD600A1F8A0 /* UIImageViewExtension.swift in Sources */,
@@ -478,6 +493,7 @@
 				3AB8BDE7270D98D200A1F8A0 /* UIColorExtension.swift in Sources */,
 				3A7A4A3A270EF0B600C999E0 /* MovieDetailViewController.swift in Sources */,
 				3AB8BDC9270C375800A1F8A0 /* MovieViewCell.swift in Sources */,
+				3A1EAE2F271EBBE5000EE094 /* ProductionCountry.swift in Sources */,
 				3A7A4A34270EDDDC00C999E0 /* TrendingMovieCell.swift in Sources */,
 				3AB8BDEC270DA50A00A1F8A0 /* MovieServiceManager.swift in Sources */,
 			);

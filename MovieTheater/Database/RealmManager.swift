@@ -25,7 +25,8 @@ class RealmManager {
     }
     
     func addMovie(movie: Movie) {
-        if !checkMovieExist(id: movie.id) {
+        guard let movieID = movie.id else { return }
+        if !checkMovieExist(id: movieID) {
             do {
                 try database.write {
                     database.add(movie)
@@ -37,7 +38,8 @@ class RealmManager {
     }
     
     func update(movie: Movie, by isFavor:Bool?, in watchList:Bool?) {
-        if checkMovieExist(id: movie.id) { // check movie exist in DB
+        guard let movieID = movie.id else { return }
+        if checkMovieExist(id: movieID) { // check movie exist in DB
             do {
                 try database.write {
                     if isFavor != nil {
@@ -55,8 +57,8 @@ class RealmManager {
     }
     
     func update(movie: Movie, in watchList:Bool) {
-        let isMovieExist = checkMovieExist(id: movie.id)
-        if isMovieExist { // check movie exist in DB
+        guard let movieID = movie.id else { return }
+        if checkMovieExist(id: movieID) { // check movie exist in DB
             do {
                 try database.write {
                     movie.inWatchList = watchList
@@ -69,8 +71,8 @@ class RealmManager {
     }
     
     func deleteMovie(movie: Movie) {
-        let isMovieExist = checkMovieExist(id: movie.id)
-        if isMovieExist {
+        guard let movieID = movie.id else { return }
+        if checkMovieExist(id: movieID) {
             do {
                 try database.write {
                     database.delete(movie)
