@@ -66,8 +66,9 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupFavoriteButton() {
-        guard let m = movie else { return }
-        isFavoriteButtonClicked = RealmManager.shared.fetchMovieBy(primaryKey: m.id).isFavor
+        guard let movie = movie else { return }
+        guard let movieID = movie.id else { return }
+        isFavoriteButtonClicked = RealmManager.shared.fetchMovieBy(primaryKey: movieID).isFavor
         if isFavoriteButtonClicked {
             favoriteButton.setImage(UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .normal)
         } else {
@@ -76,8 +77,9 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupBookmarkButton() {
-        guard let m = movie else { return }
-        isBoorkmarkButtonClicked = RealmManager.shared.fetchMovieBy(primaryKey: m.id).inWatchList
+        guard let movie = movie else { return }
+        guard let movieID = movie.id else { return }
+        isBoorkmarkButtonClicked = RealmManager.shared.fetchMovieBy(primaryKey: movieID).inWatchList
         if isBoorkmarkButtonClicked {
             bookmarkButton.setImage(UIImage(systemName: "bookmark.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal), for: .normal)
         } else {
@@ -86,21 +88,29 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupDisplay() {
-        if let m = movie {
-            let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + m.posterPath
+        if let movie = movie {
+            guard let movieImagePath = movie.posterPath,
+                  let movieVoteAvarage = movie.voteAverage,
+                  let movieTitle = movie.title,
+                  let movieRuntime = movie.runtime,
+                  let movieOverview = movie.overview,
+                  let movieTagline = movie.tagline  else {return }
+            let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + movieImagePath
             guard let url = URL(string: urlString) else { return }
             largeMovieImageView.downloaded(from: url)
+            largeMovieImageView.createBlur()
             smallMovieImageView.downloaded(from: url)
-            movieNameLabel.text = m.title
-            ratingLabel.text = Double(m.rating * 10).clean + "%"
-            runtimeMovieLabel.text = m.runtime.toTime()
+            movieNameLabel.text = movieTitle
+            ratingLabel.text = Double(movieVoteAvarage * 10).clean + "%"
+            runtimeMovieLabel.text = movieRuntime.toTime()
             var temString = ""
-            for genre in m.genres {
-                temString = temString + genre.name + ", "
+            for genre in movie.genres {
+                guard let genreName = genre.name else { return }
+                temString = temString + genreName + ", "
             }
             genresMovieLabel.text = temString
-            tagLineMovieLabel.text = m.tagLine != "" ? m.tagLine : "Tagline will be update"
-            overviewMovieTextView.text = m.overview
+            tagLineMovieLabel.text = movieTagline != "" ? movieTagline : "Tagline will be update"
+            overviewMovieTextView.text = movieOverview
         }
     }
     

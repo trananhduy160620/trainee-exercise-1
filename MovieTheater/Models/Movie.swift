@@ -7,58 +7,62 @@
 
 import Foundation
 import RealmSwift
-class Movie:Object {
-    @Persisted(primaryKey: true) var id: Int = 0
-    @Persisted var title:String = ""
-    @Persisted var tagLine:String = ""
-    @Persisted var overview:String = ""
-    @Persisted var runtime:Int = 0
-    @Persisted var releaseDate:String = ""
-    @Persisted var posterPath:String = ""
-    @Persisted var rating:Double = 0
-    @Persisted var voteCount: Int = 0
-    @Persisted var genres:List<Genres>
+
+class Movie:Object, Codable {
+    @Persisted var adult : Bool?
+    @Persisted var backdropPath : String?
+    @Persisted var movieItem : MovieItem?
+    @Persisted var budget : Int?
+    @Persisted var genres : List<Genre>
+    @Persisted var homepage : String?
+    @Persisted(primaryKey: true) var id : Int?
+    @Persisted var imdbId : String?
+    @Persisted var originalLanguage : String?
+    @Persisted var originalTitle : String?
+    @Persisted var overview : String?
+    @Persisted var popularity : Float?
+    @Persisted var posterPath : String?
+    @Persisted var productionCompanies : List<ProductionCompany>
+    @Persisted var productionCountries : List<ProductionCountry>
+    @Persisted var releaseDate : String?
+    @Persisted var revenue : Int?
+    @Persisted var runtime : Int?
+    @Persisted var spokenLanguages : List<SpokenLanguage>
+    @Persisted var status : String?
+    @Persisted var tagline : String?
+    @Persisted var title : String?
+    @Persisted var video : Bool?
+    @Persisted var voteAverage : Float?
+    @Persisted var voteCount : Int?
     @Persisted var isFavor:Bool = false
-    @Persisted var inWatchList:Bool = false
+    @Persisted var inWatchList: Bool = false
     
-    convenience init(json: [String:Any] ) {
-        self.init()
-        self.id = json["id"] as! Int
-        self.title = json["title"] as! String
-        self.tagLine = json["tagline"] as! String
-        self.runtime = json["runtime"] as! Int
-        self.overview = json["overview"] as! String
-        self.releaseDate = json["release_date"] as! String
-        self.posterPath = json["poster_path"] as! String
-        self.rating = json["vote_average"] as! Double
-        self.voteCount = json["vote_count"] as! Int
-        let genresJson = json["genres"] as! NSArray
-        for item in genresJson {
-            if let tempGenre = item as? [String:Any] {
-                let id = tempGenre["id"] as! Int
-                let name = tempGenre["name"] as! String
-                let genre = Genres(id: id,
-                                   name: name)
-                self.genres.append(genre)
-            }
-        }
-    }
-    
-    convenience init(id: Int, title:String, tagLine:String, overview:String, runtime:Int,
-                     releaseDate:String, posterPath:String, rating:Double, voteCount:Int, genres:List<Genres>, isFavor:Bool = false, inWatchList:Bool = false) {
-        self.init()
-        self.id = id
-        self.title = title
-        self.tagLine = tagLine
-        self.overview = overview
-        self.runtime = runtime
-        self.releaseDate = releaseDate
-        self.posterPath = posterPath
-        self.rating = rating
-        self.voteCount = voteCount
-        self.genres = genres
-        self.isFavor = isFavor
-        self.inWatchList = inWatchList
+    enum CodingKeys: String, CodingKey {
+        case adult = "adult"
+        case backdropPath = "backdrop_path"
+        case movieItem = "belongs_to_collection"
+        case budget = "budget"
+        case genres = "genres"
+        case homepage = "homepage"
+        case id = "id"
+        case imdbId = "imdb_id"
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case overview = "overview"
+        case popularity = "popularity"
+        case posterPath = "poster_path"
+        case productionCompanies = "production_companies"
+        case productionCountries = "production_countries"
+        case releaseDate = "release_date"
+        case revenue = "revenue"
+        case runtime = "runtime"
+        case spokenLanguages = "spoken_languages"
+        case status = "status"
+        case tagline = "tagline"
+        case title = "title"
+        case video = "video"
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
     }
 }
 

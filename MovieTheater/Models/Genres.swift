@@ -8,12 +8,12 @@
 import Foundation
 import RealmSwift
 
-class Genres:Object {
-    @Persisted var id:Int = 0
-    @Persisted var name:String = ""
-    convenience init(id:Int, name:String) {
-        self.init()
-        self.id = id
-        self.name = name
+class Genre :Object, Codable {
+    @Persisted var id : Int?
+    @Persisted var name : String?
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
     }
 }

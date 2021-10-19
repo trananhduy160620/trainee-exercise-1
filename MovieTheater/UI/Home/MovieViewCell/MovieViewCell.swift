@@ -34,12 +34,15 @@ class MovieViewCell: UICollectionViewCell {
     }
     
     func setupDisplay(movie: Movie) {
-        let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + movie.posterPath
+        guard let movieImagePath = movie.posterPath else { return }
+        guard let movieReleaseDate = movie.releaseDate else { return }
+        guard let movieRating = movie.voteAverage else { return  }
+        let urlString = "https://www.themoviedb.org/t/p/w220_and_h330_face" + movieImagePath
         guard let url = URL(string: urlString) else { return }
         movieImageView.downloaded(from: url)
         movieNameLabel.text = movie.title
-        movieDateLabel.text = movie.releaseDate.toDate()
-        ratingLabel.text = Double(movie.rating * 10).clean + "%"
+        movieDateLabel.text = movieReleaseDate.toDate()
+        ratingLabel.text = Double(movieRating * 10).clean + "%"
         
     }
 }
