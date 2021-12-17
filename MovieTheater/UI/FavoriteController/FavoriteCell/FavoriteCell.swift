@@ -14,6 +14,12 @@ class FavoriteCell: UITableViewCell {
     @IBOutlet weak var releaseDateMovieLabel: UILabel!
     @IBOutlet weak var voteCountLabel: UILabel!
     
+    static var nib: UINib {
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
+    static var reuseableIdentifier:String {
+        return String(describing: self)
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         movieImageView.layer.cornerRadius = 10

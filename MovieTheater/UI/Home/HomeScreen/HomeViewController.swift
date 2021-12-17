@@ -27,14 +27,17 @@ class HomeViewController: UIViewController {
         setupMovieTableView()
         createPopularMoviesData()
         createTrendingMoviesData()
-        print("Database path: ",RealmManager.shared.getDatabasePath())
+        print("Database path: ",MovieManager.shared.getDatabasePath())
     }
     
     // MARK:- setupLeftBarButton
     private func setupLeftBarButton() {
         let leftImage = UIImage(systemName: "line.horizontal.3")?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        let moreBarButton = UIBarButtonItem(image: leftImage, style: .plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem = moreBarButton
+        let moreBarButton1 = UIBarButtonItem(image: leftImage, style: .plain, target: self, action: nil)
+        let moreBarButton2 = UIBarButtonItem(image: leftImage, style: .plain, target: self, action: nil)
+        moreBarButton2.isEnabled = false
+        moreBarButton2.image = leftImage?.withTintColor(.clear, renderingMode: .alwaysOriginal)
+        self.navigationItem.leftBarButtonItems = [moreBarButton1, moreBarButton2]
     }
     
     private func setupRightBarButtons() {
@@ -68,7 +71,7 @@ class HomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.popularMovies = movies
                     movies.forEach { (movieItem) in
-                        RealmManager.shared.addMovie(movie: movieItem) // add movie into realm DB after request data from api
+                        MovieManager.shared.addMovie(movie: movieItem) // add movie into realm DB after request data from api
                     }
                     self.movieTableView.reloadData()
                 }
@@ -85,7 +88,7 @@ class HomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.trendingMovies = movies
                     movies.forEach { (movieItem) in
-                        RealmManager.shared.addMovie(movie: movieItem) // add movie into realm DB after request data from api
+                        MovieManager.shared.addMovie(movie: movieItem) // add movie into realm DB after request data from api
                     }
                     self.movieTableView.reloadData()
                 }

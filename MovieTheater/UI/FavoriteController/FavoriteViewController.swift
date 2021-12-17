@@ -33,19 +33,34 @@ class FavoriteViewController: UIViewController {
     
     // MARK: - Fetch Data from Realm DB
     private func fetchFavoriteMovie() {
-        listFavoriteMovie = RealmManager.shared.fetchMoviesByFavorite()
+        listFavoriteMovie = MovieManager.shared.fetchMoviesByFavorite()
         favoriteMovieTableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension FavoriteViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let selectedMovieItem = listFavoriteMovie[indexPath.row]
+        if editingStyle == .delete {
+            MovieManager.shared.update(movie: selectedMovieItem, by: false, in: nil)
+            listFavoriteMovie = MovieManager.shared.fetchMoviesByFavorite()
+            favoriteMovieTableView.reloadData()
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if listFavoriteMovie.count == 0 {
+            self.favoriteMovieTableView.setEmptyMessage("No favorite movie item.")
+        } else {
+            self.favoriteMovieTableView.restore()
+        }
         return listFavoriteMovie.count
     }
     

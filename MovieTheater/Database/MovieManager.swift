@@ -8,8 +8,8 @@
 import Foundation
 import RealmSwift
 
-class RealmManager {
-    static let shared = RealmManager()
+class MovieManager {
+    static let shared = MovieManager()
     private let database: Realm
     private init() {
         do {
@@ -21,7 +21,7 @@ class RealmManager {
     }
     
     func getDatabasePath() -> String{
-        return Realm.Configuration.defaultConfiguration.fileURL!.path
+        return Realm.Configuration.defaultConfiguration.fileURL?.path ?? "Error: No exist database path"
     }
     
     func addMovie(movie: Movie) {
@@ -55,8 +55,7 @@ class RealmManager {
     }
     
     func update(movie: Movie, in watchList:Bool) {
-        let isMovieExist = checkMovieExist(id: movie.id)
-        if isMovieExist { // check movie exist in DB
+        if checkMovieExist(id: movie.id) { // check movie exist in DB
             do {
                 try database.write {
                     movie.inWatchList = watchList
@@ -69,8 +68,7 @@ class RealmManager {
     }
     
     func deleteMovie(movie: Movie) {
-        let isMovieExist = checkMovieExist(id: movie.id)
-        if isMovieExist {
+        if checkMovieExist(id: movie.id) {
             do {
                 try database.write {
                     database.delete(movie)
